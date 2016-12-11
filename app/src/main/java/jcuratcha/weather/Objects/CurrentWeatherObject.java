@@ -1,10 +1,9 @@
 package jcuratcha.weather.Objects;
 
-import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-/**
- * Created by DoorCrasher on 2016-12-11.
- */
+import java.util.List;
 
 public class CurrentWeatherObject {
 
@@ -12,5 +11,16 @@ public class CurrentWeatherObject {
     private double Latitude;
 
     private List<WeatherObject> weather;
+
+    public CurrentWeatherObject(JSONObject jsonObject) throws JSONException {
+        if (jsonObject != null) {
+            if (jsonObject.has("lon"))
+                Longitude = jsonObject.getDouble("lon");
+
+            if (jsonObject.has("lat"))
+                Longitude = jsonObject.getDouble("lat");
+        }
+
+    }
 
 }

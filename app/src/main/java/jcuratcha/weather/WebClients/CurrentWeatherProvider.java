@@ -1,6 +1,6 @@
 package jcuratcha.weather.WebClients;
 
-import com.android.volley.RequestQueue;
+import android.app.Activity;
 
 import jcuratcha.weather.Objects.CurrentWeatherObject;
 
@@ -10,5 +10,5 @@ import jcuratcha.weather.Objects.CurrentWeatherObject;
 
 public interface CurrentWeatherProvider {
 
-    CurrentWeatherObject GetCurrentWeather(RequestQueue requestQueue, int cityId);
+    CurrentWeatherObject GetCurrentWeather(Activity activity, int cityId);
 }

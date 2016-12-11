@@ -30,6 +30,6 @@ public class Dashboard extends AppCompatActivity {
     }
 
     public void GetWeather(View view) {
-        currentWeatherProvider.GetCurrentWeather(requestQueue, 6183235);
+        currentWeatherProvider.GetCurrentWeather(this, 6183235);
     }
 }
