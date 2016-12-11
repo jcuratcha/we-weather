@@ -11,16 +11,31 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.Locale;
+
+import jcuratcha.weather.WebClients.CurrentWeatherClient;
+import jcuratcha.weather.WebClients.CurrentWeatherProvider;
+
 public class Dashboard extends AppCompatActivity {
+
+    private CurrentWeatherProvider currentWeatherProvider;
+
+    private String URL = "api.openweathermap.org";
+    private int cityId = 6183235;
+    private String apiKey = "d3cd60bd315a278f3df5b55318c2ca8d";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        currentWeatherProvider = new CurrentWeatherClient();
+
         final TextView mTextView = (TextView) findViewById(R.id.request_text);
 
+
+
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://www.google.ca";
+        String url = String.format(Locale.CANADA, "%1$d/data/2.5/weather?id=%2$d&appid=%3$d", URL, cityId, apiKey);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
