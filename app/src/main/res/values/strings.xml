@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Weather</string>
+
+    <!-- UI element strings -->
+
+    <string name="request_button">Get Weather</string>
 </resources>
