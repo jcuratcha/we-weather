@@ -1,10 +1,14 @@
 package jcuratcha.weather.WebClients;
 
-import java.net.HttpURLConnection;
+import jcuratcha.weather.Objects.CurrentWeatherObject;
 
 /**
  * Created by DoorCrasher on 2016-12-10.
  */
 
-public class CurrentWeatherClient {
+public class CurrentWeatherClient implements CurrentWeatherProvider {
+
+    public CurrentWeatherObject GetCurrentWeather(int cityId) {
+        return new CurrentWeatherObject();
+    }
 }
