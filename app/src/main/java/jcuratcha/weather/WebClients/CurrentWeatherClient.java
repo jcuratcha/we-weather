@@ -2,6 +2,7 @@ package jcuratcha.weather.WebClients;
 
 import android.app.Activity;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,10 +17,13 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
+import jcuratcha.weather.Dashboard;
 import jcuratcha.weather.Objects.CurrentWeatherObject;
 
 /**
- * Created by DoorCrasher on 2016-12-10.
+ * CurrentWeatherClient
+ *
+ * Client for getting current weather information
  */
 
 public class CurrentWeatherClient implements CurrentWeatherProvider {
@@ -30,7 +34,7 @@ public class CurrentWeatherClient implements CurrentWeatherProvider {
     JSONObject requestResponse;
     String errorString;
 
-    public CurrentWeatherObject GetCurrentWeather(final Activity activity, int cityId) {
+    public CurrentWeatherObject GetCurrentWeather(final Activity activity, int cityId, final TextView textView) {
 
         CurrentWeatherObject currentWeather;
 

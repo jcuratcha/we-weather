@@ -3,5 +3,6 @@
 
     <!-- UI element strings -->
 
-    <string name="request_button">Get Weather</string>
+    <string name="get_current_weather">Get Weather</string>
+    <string name="current_weather">Current Weather</string>
 </resources>
