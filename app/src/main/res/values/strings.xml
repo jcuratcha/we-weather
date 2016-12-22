@@ -4,5 +4,9 @@
     <!-- UI element strings -->
 
     <string name="get_current_weather">Get Weather</string>
-    <string name="current_weather">Current Weather</string>
+    <string name="current_weather">Current Weather Condition</string>
+    <string name="current_temperature">Current Temperature</string>
+
+    <!-- System Strings -->
+    <string name="error_weather_not_available">Could not retrieve weather details</string>
 </resources>
