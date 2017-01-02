@@ -7,6 +7,10 @@
     <string name="current_weather">Current Weather Condition</string>
     <string name="current_temperature">Current Temperature</string>
 
+    <!-- Placeholders -->
+    <string name="city_name">City/Town Name</string>
+    <string name="country_name">Country Name</string>
+
     <!-- System Strings -->
     <string name="error_weather_not_available">Could not retrieve weather details</string>
 </resources>

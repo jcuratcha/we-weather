@@ -14,6 +14,21 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/city_name_edit_text"
+            android:hint="@string/city_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/country_name_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/get_current_weather"
+            android:onClick="GetCurrentWeatherData" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,10 +51,5 @@
             android:layout_height="wrap_content"
             android:text="@string/error_weather_not_available"
             android:visibility="invisible"/>
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="@string/get_current_weather"
-            android:onClick="GetCurrentWeatherData" />
     </LinearLayout>
 </RelativeLayout>

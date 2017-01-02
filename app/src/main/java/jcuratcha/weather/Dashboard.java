@@ -3,6 +3,7 @@ package jcuratcha.weather;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -21,6 +22,7 @@ public class Dashboard extends AppCompatActivity {
 
     RequestQueueSingleton requestHelper;
     TextView mTextDegrees, mTextWeather, mTextError;
+    EditText mCityNameTextInput;
 
     private String URL = "api.openweathermap.org";
     private String apiKey = "d3cd60bd315a278f3df5b55318c2ca8d";
@@ -37,15 +39,27 @@ public class Dashboard extends AppCompatActivity {
         mTextWeather = (TextView) findViewById(R.id.text_current_weather);
         mTextError = (TextView) findViewById(R.id.text_error);
 
+        mCityNameTextInput = (EditText) findViewById(R.id.city_name_edit_text);
+
     }
 
     public void GetCurrentWeatherData(View view) {
 
+        String cityName = mCityNameTextInput.getText().toString().replaceAll("\\s+","");
+
+//        String url = String.format(
+//                Locale.CANADA,
+//                "http://%1$s/data/2.5/weather?id=%2$d&appid=%3$s",
+//                URL,
+//                cityId,
+//                apiKey
+//        );
+
         String url = String.format(
                 Locale.CANADA,
-                "http://%1$s/data/2.5/weather?id=%2$d&appid=%3$s",
+                "http://%1$s/data/2.5/weather?q=%2$s&appid=%3$s",
                 URL,
-                cityId,
+                cityName,
                 apiKey
         );
 
