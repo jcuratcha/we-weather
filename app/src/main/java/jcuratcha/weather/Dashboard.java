@@ -19,9 +19,7 @@ import jcuratcha.weather.WebClients.CurrentWeatherProvider;
 
 public class Dashboard extends AppCompatActivity {
 
-    private CurrentWeatherProvider currentWeatherProvider;
-
-    RequestQueueSingleton requestHelper = RequestQueueSingleton.getInstance();
+    RequestQueueSingleton requestHelper;
     TextView mTextDegrees, mTextWeather, mTextError;
 
     private String URL = "api.openweathermap.org";
@@ -33,7 +31,7 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        currentWeatherProvider = new CurrentWeatherClient();
+        requestHelper = RequestQueueSingleton.getInstance(this);
 
         mTextDegrees = (TextView) findViewById(R.id.text_degrees);
         mTextWeather = (TextView) findViewById(R.id.text_current_weather);

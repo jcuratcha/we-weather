@@ -32,8 +32,6 @@ public class CurrentWeatherClient implements CurrentWeatherProvider {
     private String URL = "api.openweathermap.org";
     private String apiKey = "d3cd60bd315a278f3df5b55318c2ca8d";
 
-    RequestQueueSingleton requestHelper = RequestQueueSingleton.getInstance();
-
     JSONObject requestResponse;
     String errorString;
 
