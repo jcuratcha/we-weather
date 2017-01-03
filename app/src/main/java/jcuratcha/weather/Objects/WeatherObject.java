@@ -1,4 +1,4 @@
-package jcuratcha.weather.Objects;
+package jcuratcha.weather.objects;
 
 /**
  * Created by DoorCrasher on 2016-12-11.

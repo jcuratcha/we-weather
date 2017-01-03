@@ -1,6 +1,5 @@
-package jcuratcha.weather;
+package jcuratcha.weather.network;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.LruCache;
@@ -43,7 +42,6 @@ public class RequestQueueSingleton {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
         }
-
         return mRequestQueue;
     }
 
@@ -60,7 +58,6 @@ public class RequestQueueSingleton {
         if (mInstance == null) {
             mInstance = new RequestQueueSingleton(context);
         }
-
         return mInstance;
     }
 

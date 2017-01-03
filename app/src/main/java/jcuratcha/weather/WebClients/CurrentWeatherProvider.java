@@ -1,9 +1,9 @@
-package jcuratcha.weather.WebClients;
+package jcuratcha.weather.webclients;
 
 import android.app.Activity;
 import android.widget.TextView;
 
-import jcuratcha.weather.Objects.CurrentWeatherObject;
+import jcuratcha.weather.objects.CurrentWeatherObject;
 
 /**
  * Created by DoorCrasher on 2016-12-11.

@@ -1,4 +1,4 @@
-package jcuratcha.weather.Objects;
+package jcuratcha.weather.objects;
 
 import org.json.JSONArray;
 import org.json.JSONException;

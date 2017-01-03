@@ -1,4 +1,4 @@
-package jcuratcha.weather;
+package jcuratcha.weather.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,10 +15,10 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
-import jcuratcha.weather.WebClients.CurrentWeatherClient;
-import jcuratcha.weather.WebClients.CurrentWeatherProvider;
+import jcuratcha.weather.R;
+import jcuratcha.weather.network.RequestQueueSingleton;
 
-public class Dashboard extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     RequestQueueSingleton requestHelper;
     TextView mTextDegrees, mTextWeather, mTextError;
@@ -31,7 +31,7 @@ public class Dashboard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_main);
 
         requestHelper = RequestQueueSingleton.getInstance(this);
 
