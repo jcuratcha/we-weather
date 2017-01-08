@@ -1,5 +1,6 @@
 package jcuratcha.weather.activities;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,11 +17,13 @@ import org.json.JSONObject;
 import java.util.Locale;
 
 import jcuratcha.weather.R;
-import jcuratcha.weather.network.RequestQueueSingleton;
+import jcuratcha.weather.network.VolleyRequestQueue;
 
 public class MainActivity extends AppCompatActivity {
 
-    RequestQueueSingleton requestHelper;
+    SharedPreferences prefs = null;
+
+    VolleyRequestQueue requestHelper;
     TextView mTextDegrees, mTextWeather, mTextError;
     EditText mCityNameTextInput;
 
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        requestHelper = RequestQueueSingleton.getInstance(this);
+        requestHelper = VolleyRequestQueue.getInstance(this);
 
         mTextDegrees = (TextView) findViewById(R.id.text_degrees);
         mTextWeather = (TextView) findViewById(R.id.text_current_weather);
@@ -41,6 +44,19 @@ public class MainActivity extends AppCompatActivity {
 
         mCityNameTextInput = (EditText) findViewById(R.id.city_name_edit_text);
 
+        prefs = getSharedPreferences("com.doorcrasher.WeWeather", MODE_PRIVATE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (prefs.getBoolean("firstrun", true)) {
+
+
+
+            prefs.edit().putBoolean("firstrun", false).apply();
+        }
     }
 
     public void GetCurrentWeatherData(View view) {
