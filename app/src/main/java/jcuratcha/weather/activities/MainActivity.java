@@ -1,5 +1,6 @@
 package jcuratcha.weather.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,17 +52,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (prefs.getBoolean("firstrun", true)) {
+        if (prefs.getBoolean("firstRun", true)) {
 
+            Intent intent = new Intent(this, FirstTimeSetupActivity.class);
+            startActivity(intent);
 
-
-            prefs.edit().putBoolean("firstrun", false).apply();
+            prefs.edit().putBoolean("firstRun", false).apply();
         }
     }
 
     public void GetCurrentWeatherData(View view) {
 
-        String cityName = mCityNameTextInput.getText().toString().replaceAll("\\s+","");
+//        String cityName = mCityNameTextInput.getText().toString().replaceAll("\\s+","");
+        String cityName = prefs.getString("currentLocation", null).replaceAll("\\s+","");
 
 //        String url = String.format(
 //                Locale.CANADA,

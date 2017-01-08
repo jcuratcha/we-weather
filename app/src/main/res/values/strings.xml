@@ -2,10 +2,14 @@
     <string name="app_name">Weather</string>
 
     <!-- UI element strings -->
-
     <string name="get_current_weather">Get Weather</string>
     <string name="current_weather">Current Weather Condition</string>
     <string name="current_temperature">Current Temperature</string>
+
+    <!-- Settings strings -->
+    <string name="current_location_name">Your Current Location</string>
+    <string name="sample_location_name">AnyCity, Manitoba, Canada</string>
+    <string name="save_changes_complete_button">Save Changes</string>
 
     <!-- Placeholders -->
     <string name="city_name">City/Town Name</string>
