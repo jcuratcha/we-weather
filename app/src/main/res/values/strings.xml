@@ -11,6 +11,7 @@
     <string name="current_location_name">Your Current Location</string>
     <string name="sample_location_name">AnyCity, Manitoba, Canada</string>
     <string name="save_changes_complete_button">Save Changes</string>
+    <string name="temperature_unit">Temperature Unit</string>
 
     <!-- Placeholders -->
     <string name="city_name">City/Town Name</string>
@@ -22,27 +23,23 @@
 
     <!-- Strings related to Settings -->
 
-    <!-- Example General settings -->
+    <!-- General settings -->
     <string name="pref_header_general">General</string>
 
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
 
-    <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
+    <string name="pref_title_city_name">City Name</string>
+    <string name="pref_default_city_name">Winnipeg</string>
 
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
+    <string name="pref_title_current_temperature_unit">Unit of Temperature</string>
+    <string-array name="pref_temperature_unit_list_titles">
+        <item>Celcius</item>
+        <item>Fahrenheit</item>
+        <item>Kelvin</item>
     </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
+    <string-array name="pref_temperature_unit_list_values">
+        <item>C</item>
+        <item>F</item>
+        <item>K</item>
     </string-array>
 
     <!-- Example settings for Data & Sync -->
