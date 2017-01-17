@@ -27,6 +27,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="jcuratcha.weather.activities.MainActivity"/>
         </activity>
+        <activity android:name=".activities.DebugInfoActivity">
+        </activity>
     </application>
 
 </manifest>

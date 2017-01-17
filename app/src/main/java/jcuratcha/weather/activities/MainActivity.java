@@ -2,6 +2,7 @@ package jcuratcha.weather.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         mCityNameTextInput = (EditText) findViewById(R.id.city_name_edit_text);
 
-        prefs = getSharedPreferences("com.doorcrasher.WeWeather", MODE_PRIVATE);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
     @Override
@@ -76,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this, UserSettingsActivity.class);
             startActivity(intent);
+        } else if (id == R.id.action_debug_prefs){
+            Intent intent = new Intent(MainActivity.this, DebugInfoActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -84,7 +88,11 @@ public class MainActivity extends AppCompatActivity {
     public void GetCurrentWeatherData(View view) {
 
 //        String cityName = mCityNameTextInput.getText().toString().replaceAll("\\s+","");
-        String cityName = prefs.getString("currentLocation", null).replaceAll("\\s+","");
+//        String cityName = prefs.getString("currentLocation", null).replaceAll("\\s+","");
+        String cityName = prefs.getString(getString(R.string.key_city_name), null);
+
+        if (cityName != null)
+            cityName.replaceAll("\\s+","");
 
 //        String url = String.format(
 //                Locale.CANADA,
@@ -101,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
                 cityName,
                 apiKey
         );
+
+        System.out.println("Current request: [" + url + "]");
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(
                 Request.Method.GET,

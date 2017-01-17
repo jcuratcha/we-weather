@@ -29,10 +29,6 @@
         android:layout_below="@+id/current_location_name"
         android:layout_alignParentStart="true"/>
 
-    <TextSwitcher
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></TextSwitcher>
-
     <TextView
         android:text=""
         android:layout_width="wrap_content"

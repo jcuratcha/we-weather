@@ -192,8 +192,8 @@ public class UserSettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("example_text"));
-            bindPreferenceSummaryToValue(findPreference("example_list"));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.key_city_name)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.key_temperature_unit)));
         }
 
         @Override

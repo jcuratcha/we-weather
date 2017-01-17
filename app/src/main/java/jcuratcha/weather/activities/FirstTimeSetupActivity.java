@@ -1,6 +1,7 @@
 package jcuratcha.weather.activities;
 
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,14 +22,14 @@ public class FirstTimeSetupActivity extends AppCompatActivity {
 
         mLocationName = (EditText)findViewById(R.id.current_location_name);
 
-        prefs = getSharedPreferences("com.doorcrasher.WeWeather", MODE_PRIVATE);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
     public void onClickSaveButton(View view) {
 
         if (mLocationName != null) {
             String location = mLocationName.getText().toString();
-            prefs.edit().putString("currentLocation", location).apply();
+            prefs.edit().putString(getString(R.string.key_city_name), location).apply();
         }
 
         finish();
