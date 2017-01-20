@@ -29,7 +29,8 @@ public class FirstTimeSetupActivity extends AppCompatActivity {
 
         if (mLocationName != null) {
             String location = mLocationName.getText().toString();
-            prefs.edit().putString(getString(R.string.key_city_name), location).apply();
+            if (location != null && location.length() > 0)
+                prefs.edit().putString(getString(R.string.key_city_name), location).apply();
         }
 
         finish();

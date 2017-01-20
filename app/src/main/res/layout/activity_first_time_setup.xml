@@ -19,7 +19,8 @@
         android:hint="@string/sample_location_name"
         android:id="@+id/current_location_name"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:text="@string/current_location_name"
@@ -42,4 +43,29 @@
         android:layout_alignParentEnd="true"
         android:id="@+id/save_button"
         android:onClick="onClickSaveButton"/>
+
+    <RadioButton
+        android:text="@string/temp_unit_celsius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/celsiusUnitRadioButton"/>
+
+    <RadioButton
+        android:text="@string/temp_unit_fahrenheit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fahrenheitUnitRadioButton"
+        android:layout_below="@+id/celsiusUnitRadioButton"
+        android:layout_alignParentStart="true"/>
+
+    <RadioButton
+        android:text="@string/temp_unit_kelvin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/kelvinUnitRadioButton"
+        android:layout_below="@+id/fahrenheitUnitRadioButton"
+        android:layout_alignParentStart="true"/>
 </RelativeLayout>

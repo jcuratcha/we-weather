@@ -13,6 +13,9 @@
     <string name="sample_location_name">AnyCity, Manitoba, Canada</string>
     <string name="save_changes_complete_button">Save Changes</string>
     <string name="temperature_unit">Temperature Unit</string>
+    <string name="temp_unit_celsius">Celsius</string>
+    <string name="temp_unit_kelvin">Kelvin</string>
+    <string name="temp_unit_fahrenheit">Fahrenheit</string>
 
     <!-- Placeholders -->
     <string name="city_name">City/Town Name</string>
@@ -30,7 +33,7 @@
     <string name="pref_title_city_name">City Name</string>
     <string name="pref_default_city_name">Winnipeg</string>
 
-    <string name="pref_title_current_temperature_unit">Unit of Temperature</string>
+    <string name="pref_title_current_temperature_unit">Temperature Unit</string>
     <string-array name="pref_temperature_unit_list_titles">
         <item>Celsius</item>
         <item>Fahrenheit</item>

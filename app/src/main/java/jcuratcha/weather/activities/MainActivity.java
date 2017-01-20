@@ -22,6 +22,8 @@ import java.util.Locale;
 
 import jcuratcha.weather.R;
 import jcuratcha.weather.network.VolleyRequestQueue;
+import jcuratcha.weather.utils.TemperatureUnit;
+import jcuratcha.weather.utils.UnitConverter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         mCityNameTextInput = (EditText) findViewById(R.id.city_name_edit_text);
 
+        PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 //        String cityName = mCityNameTextInput.getText().toString().replaceAll("\\s+","");
 //        String cityName = prefs.getString("currentLocation", null).replaceAll("\\s+","");
         String cityName = prefs.getString(getString(R.string.key_city_name), null);
+        final char temperatureUnit = prefs.getString(getString(R.string.key_temperature_unit), null).charAt(0);
 
         if (cityName != null)
             cityName.replaceAll("\\s+","");
@@ -130,10 +134,19 @@ public class MainActivity extends AppCompatActivity {
                     currentTemp = response.getJSONObject("main")
                             .getDouble("temp");
 
-                    currentTemp = convertKelvinToCelcius(currentTemp);
+                    switch(temperatureUnit){
+                        case 'F':
+                            currentTemp = UnitConverter.convertKelvinToFahrenheit(currentTemp);
+                            break;
+                        case 'C':
+                            currentTemp = UnitConverter.convertKelvinToCelsius(currentTemp);
+                            break;
+                    }
+
+                    long roundedTemp = Math.round(currentTemp);
 
                     mTextWeather.setText(currentWeatherCondition);
-                    mTextDegrees.setText(String.valueOf(currentTemp));
+                    mTextDegrees.setText(String.valueOf(roundedTemp));
 
                 } catch (Exception e) {
                     updateTextError(e);
