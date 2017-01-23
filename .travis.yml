@@ -8,3 +8,7 @@ android:
     # if you need to run emulator(s) during your tests
     # will be useful in the future once the app has integration tests
     - sys-img-armeabi-v7a-android-22
+
+
+before-install:
+  - chmod +x gradlew
