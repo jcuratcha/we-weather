@@ -1,0 +1,10 @@
+language: android
+
+android:
+  components:
+    - build-tools-19.1.0
+    - android-25
+    # Specify at least one system image,
+    # if you need to run emulator(s) during your tests
+    # will be useful in the future once the app has integration tests
+    - sys-img-armeabi-v7a-android-22
