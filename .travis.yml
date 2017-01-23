@@ -16,3 +16,10 @@ jdk:
 
 before-install:
   - chmod +x gradlew
+
+notifications:
+  email:
+    recipients:
+      - curatchaj@gmail.com
+    on_success: never
+    on_failure: change
