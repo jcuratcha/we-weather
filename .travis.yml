@@ -5,8 +5,8 @@ android:
   components:
     - tools
     - platform-tools
-
-    - build-tools-15.0.1
+    - tools
+    - build-tools-25.0.0
     - android-25
     - sys-img-armeabi-v7a-android-22     # for use in running emulator, will be useful in the future once the app has integration tests
     - extra-android-m2repository
