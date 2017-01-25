@@ -5,13 +5,12 @@ sudo: false
 android:
   components:
 
-#    - tools # to get the new `repository-11.xml`
-#    - tools # to install Android SDK tools 25.1.x (x = 6 right now)
-#    - platform-tools
-    - build-tools-22.0.1
-    - android-22
-
-    # Images for emulator
+    - tools
+    - platform-tools
+    - tools
+    - build-tools-25.0.2
+    - android-25
+    - sys-img-armeabi-v7a-android-25
     - sys-img-armeabi-v7a-android-22
     - sys-img-armeabi-v7a-android-17
 
