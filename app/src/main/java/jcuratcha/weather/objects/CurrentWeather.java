@@ -6,13 +6,16 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class CurrentWeatherObject {
+public class CurrentWeather {
 
-    private List<WeatherObject> weather;
+    Coordinates coordinate;
+    List<Weather> weather;
     double currentTemperature;
     String currentWeatherDescription;
+    Wind wind;
 
-    public CurrentWeatherObject(JSONObject jsonObject) throws JSONException {
+
+    public CurrentWeather(JSONObject jsonObject) throws JSONException {
         JSONArray weatherArray;
         JSONObject mainWeatherObject;
         double temperature;

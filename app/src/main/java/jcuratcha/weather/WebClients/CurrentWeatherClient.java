@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
-import jcuratcha.weather.objects.CurrentWeatherObject;
+import jcuratcha.weather.objects.CurrentWeather;
 
 /**
  * CurrentWeatherClient
@@ -31,7 +31,7 @@ public class CurrentWeatherClient implements CurrentWeatherProvider {
     JSONObject requestResponse;
     String errorString;
 
-    public CurrentWeatherObject GetCurrentWeather(final Activity activity, int cityId, final TextView textView) {
+    public CurrentWeather GetCurrentWeather(final Activity activity, int cityId, final TextView textView) {
 
         String url = String.format(Locale.CANADA, "http://%1$s/data/2.5/weather?id=%2$d&appid=%3$s", URL, cityId, apiKey);
 
@@ -53,7 +53,7 @@ public class CurrentWeatherClient implements CurrentWeatherProvider {
             Log.d("State", errorString);
 
         try {
-            return new CurrentWeatherObject(requestResponse);
+            return new CurrentWeather(requestResponse);
         } catch (JSONException e) {
             Log.e("ERROR - JSON", "Could not extract data from json response");
             return null;
