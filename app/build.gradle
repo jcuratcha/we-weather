@@ -20,6 +20,10 @@ android {
     dataBinding {
         enabled = true
     }
+    // Run lint checks, but without aborting on fail, for command line and CI builds
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
