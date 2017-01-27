@@ -17,7 +17,8 @@ public class Weather {
 
     // based on intervals from
     // http://climate.umn.edu/snow_fence/components/winddirectionanddegreeswithouttable3.htm
-    private final double angleOffset = 11.25;
+    private final double ANGLE_OFFSET = 11.25;
+    private final double DIRECTION_INTERVAL_SIZE = 22.5;
 
     public long getWeatherId() {
         return id;
@@ -45,17 +46,11 @@ public class Weather {
      */
     public CardinalDirection getWindDirection() {
         CardinalDirection[] directions = CardinalDirection.values();
-        // add offset to make mapping easier
-        int offsetDirection = (int)Math.round((windDirection + 11.25) % 360);
-        int factor = 15;
-
-        // round to nearest multiple of 15
-        // https://gist.github.com/aslakhellesoy/1134482
-        offsetDirection = ((offsetDirection % factor) > factor/2)
-                ? offsetDirection + factor - offsetDirection%factor
-                : offsetDirection - offsetDirection%factor;
-
-        int index = Math.round(offsetDirection/22.5f);
+        // Java's % operator actually returns the remainder of a division, not the modulus between them
+        // Here I need the modulus. There is a floorMod(int x, int y) method in Java 8/API level 24 that
+        // has this method, so this should be taken into consideration when updating the project.
+        // source: http://stackoverflow.com/questions/5385024/mod-in-java-produces-negative-numbers
+        int index = (int)Math.floor(((((windDirection + ANGLE_OFFSET % 360) + 360) % 360))/DIRECTION_INTERVAL_SIZE);
 
         return directions[index];
     }
