@@ -30,6 +30,9 @@ before_script:
 before_install:
   - chmod +x gradlew
 
+script:
+  - ./gradlew test
+
 notifications:
   email:
     recipients:

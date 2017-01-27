@@ -22,6 +22,7 @@ import java.util.Locale;
 
 import jcuratcha.weather.R;
 import jcuratcha.weather.network.VolleyRequestQueue;
+import jcuratcha.weather.objects.Weather;
 import jcuratcha.weather.utils.TemperatureUnit;
 import jcuratcha.weather.utils.UnitConverter;
 
@@ -90,21 +91,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void GetCurrentWeatherData(View view) {
 
-//        String cityName = mCityNameTextInput.getText().toString().replaceAll("\\s+","");
-//        String cityName = prefs.getString("currentLocation", null).replaceAll("\\s+","");
         String cityName = prefs.getString(getString(R.string.key_city_name), null);
         final char temperatureUnit = prefs.getString(getString(R.string.key_temperature_unit), null).charAt(0);
 
         if (cityName != null)
             cityName.replaceAll("\\s+","");
-
-//        String url = String.format(
-//                Locale.CANADA,
-//                "http://%1$s/data/2.5/weather?id=%2$d&appid=%3$s",
-//                URL,
-//                cityId,
-//                apiKey
-//        );
 
         String url = String.format(
                 Locale.CANADA,
@@ -124,10 +115,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    Weather currentWeather;
                     double currentTemp;
-                    String currentWeatherCondition;
+                    String currentWeatherConditionString;
 
-                    currentWeatherCondition = response.getJSONArray("weather")
+                    currentWeatherConditionString = response.getJSONArray("weather")
                             .getJSONObject(0)
                             .getString("description");
 
@@ -145,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
                     long roundedTemp = Math.round(currentTemp);
 
-                    mTextWeather.setText(currentWeatherCondition);
+                    mTextWeather.setText(currentWeatherConditionString);
                     mTextDegrees.setText(String.valueOf(roundedTemp));
 
                 } catch (Exception e) {
@@ -166,9 +158,5 @@ public class MainActivity extends AppCompatActivity {
     private void updateTextError(Exception e) {
         mTextError.setVisibility(View.VISIBLE);
         e.printStackTrace();
-    }
-
-    private double convertKelvinToCelcius(double tempKelvin) {
-        return (tempKelvin - 273.15);
     }
 }
