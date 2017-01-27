@@ -5,12 +5,14 @@ sudo: false
 android:
   components:
 
-    - tools
-    - platform-tools
-    - tools
-    - build-tools-25.0.2
-    - android-25
-    - sys-img-armeabi-v7a-android-25
+# These are needed to get Android 25+ working, in order to
+#update the repository before doing any downloads
+#    - tools
+#    - platform-tools
+#    - tools
+
+    - build-tools-22.0.2
+    - android-22
     - sys-img-armeabi-v7a-android-22
     - sys-img-armeabi-v7a-android-17
 
