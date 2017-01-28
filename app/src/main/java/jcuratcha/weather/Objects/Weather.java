@@ -8,12 +8,13 @@ public class Weather {
     private String main;        // Main condition
     private String description; // Description of current condition
     private String weatherIcon; // ID for icon of current condition
-    private double windSpeed;
+    private int windSpeed;
     private double windDirection;
     private int humidity;
     private int pressure;
     private int cloudiness;
     private Date lastUpdated;
+    private int temperature;
 
     // based on intervals from
     // http://climate.umn.edu/snow_fence/components/winddirectionanddegreeswithouttable3.htm
@@ -36,7 +37,7 @@ public class Weather {
         return weatherIcon;
     }
 
-    public double getWindSpeed() {
+    public int getWindSpeed() {
         return windSpeed;
     }
 
@@ -71,19 +72,39 @@ public class Weather {
         return lastUpdated;
     }
 
+    public int getTemperature() {
+        return temperature;
+    }
+
+    public Weather() {
+        return new Weather(0, null, null, null, 0d, 0d, 0,0,0, null, 0d);
+    }
+
     public Weather(long newId,
                    String newMain,
                    String newDescription,
                    String newWeatherIcon,
                    double newWindSpeed,
-                   double newWindDirection) {
+                   double newWindDirection,
+                   int newHumidity,
+                   int newPressure,
+                   int newCloudiness,
+                   Date newLastUpdated,
+                   double newTemperature) {
+
         id = newId;
         main = newMain;
         description = newDescription; //TODO: this will fail, need to figure out how to handle this
         weatherIcon = newWeatherIcon;
 
-        windSpeed = newWindSpeed;
+        windSpeed = (int)Math.round(newWindSpeed);
         windDirection = newWindDirection;
+
+        humidity = newHumidity;
+        pressure = newPressure;
+        cloudiness = newCloudiness;
+        lastUpdated = newLastUpdated;
+        temperature = (int)Math.round(newTemperature);
     }
 
     public enum CardinalDirection {

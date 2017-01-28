@@ -5,6 +5,12 @@
     <string name="get_current_weather">Get Weather</string>
     <string name="current_weather">Current Weather Condition</string>
     <string name="current_temperature">Current Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="cloud_cover">Cloud Cover</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="wind_direction">Wind Direction</string>
+
     <string name="action_settings">Settings</string>
     <string name="action_debugprefs">Debug</string>
 
