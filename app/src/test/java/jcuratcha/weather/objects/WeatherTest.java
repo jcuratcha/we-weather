@@ -1,5 +1,6 @@
 package jcuratcha.weather.objects;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -14,6 +15,13 @@ public class WeatherTest {
     String main = "cloud";
     String description = "so cloudy";
     double windSpeed = 9000;
+
+    Weather weather;
+
+    @Before
+    public void setUp() {
+        weather = new Weather();
+    }
 
     @Test
     public void getting_wind_direction_should_return_correct_direction(){
@@ -36,7 +44,7 @@ public class WeatherTest {
         Set<Double> keys = angles.keySet();
 
         for (double angle : keys) {
-            Weather weather = new Weather(id, main, description, null, windSpeed, angle);
+            weather.setWindDirection(angle);
 
             assertEquals("Should have converted to correct CardinalDirection",
                     angles.get(angle),

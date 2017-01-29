@@ -1,14 +1,19 @@
 package jcuratcha.weather.objects;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+import com.android.databinding.library.baseAdapters.BR;
+
 import java.util.Date;
 
-public class Weather {
+public class Weather extends BaseObservable {
 
     private long id;    // The ID for the current location (i.e. Winnipeg is 6183235
     private String main;        // Main condition
     private String description; // Description of current condition
     private String weatherIcon; // ID for icon of current condition
-    private int windSpeed;
+    private double windSpeed;
     private double windDirection;
     private int humidity;
     private int pressure;
@@ -25,19 +30,23 @@ public class Weather {
         return id;
     }
 
+    @Bindable
     public String getMain() {
         return main;
     }
 
+    @Bindable
     public String getDescription() {
         return description;
     }
 
+    @Bindable
     public String getWeatherIcon() {
         return weatherIcon;
     }
 
-    public int getWindSpeed() {
+    @Bindable
+    public double getWindSpeed() {
         return windSpeed;
     }
 
@@ -45,6 +54,7 @@ public class Weather {
      * Calculates the {@link CardinalDirection} based on the angle of the wind
      * @return a {@link CardinalDirection} representing the current wind direction
      */
+    @Bindable
     public CardinalDirection getWindDirection() {
         CardinalDirection[] directions = CardinalDirection.values();
         // Java's % operator actually returns the remainder of a division, not the modulus between them
@@ -56,22 +66,27 @@ public class Weather {
         return directions[index];
     }
 
+    @Bindable
     public int getHumidity() {
         return humidity;
     }
 
+    @Bindable
     public int getPressure() {
         return pressure;
     }
 
+    @Bindable
     public int getCloudiness() {
         return cloudiness;
     }
 
+    @Bindable
     public Date getLastUpdated() {
         return lastUpdated;
     }
 
+    @Bindable
     public int getTemperature() {
         return temperature;
     }
@@ -124,5 +139,59 @@ public class Weather {
         EAST, EAST_SOUTH_EAST, SOUTH_EAST, SOUTH_SOUTH_EAST,
         SOUTH, SOUTH_SOUTH_WEST, SOUTH_WEST, WEST_SOUTH_WEST,
         WEST, WEST_NORTH_WEST, NORTH_WEST, NORTH_NORTH_WEST
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setMain(String main) {
+        this.main = main;
+        notifyPropertyChanged(BR.main);
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+        notifyPropertyChanged(BR.description);
+    }
+
+    public void setWeatherIcon(String weatherIcon) {
+        this.weatherIcon = weatherIcon;
+        notifyPropertyChanged(BR.weatherIcon);
+    }
+
+    public void setWindSpeed(double windSpeed) {
+        this.windSpeed = windSpeed;
+        notifyPropertyChanged(BR.windSpeed);
+    }
+
+    public void setWindDirection(double windDirection) {
+        this.windDirection = windDirection;
+        notifyPropertyChanged(BR.windDirection);
+    }
+
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
+        notifyPropertyChanged(BR.humidity);
+    }
+
+    public void setPressure(int pressure) {
+        this.pressure = pressure;
+        notifyPropertyChanged(BR.pressure);
+    }
+
+    public void setCloudiness(int cloudiness) {
+        this.cloudiness = cloudiness;
+        notifyPropertyChanged(BR.cloudiness);
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
+        notifyPropertyChanged(BR.lastUpdated);
+    }
+
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
+        notifyPropertyChanged(BR.temperature);
     }
 }

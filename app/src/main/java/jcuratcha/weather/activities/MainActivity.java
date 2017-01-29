@@ -118,29 +118,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    String description = response.getJSONArray("weather")
+                    weather.setDescription(response.getJSONArray("weather")
                             .getJSONObject(0)
-                            .getString("description");
+                            .getString("description"));
 
-                    double windSpeed = response.getJSONObject("wind")
-                            .getDouble("speed");
 
-                    double windDirection = response.getJSONObject("wind")
-                            .getDouble("deg");
+                    weather.setWindSpeed(response.getJSONObject("wind")
+                            .getDouble("speed"));
 
-                    int humidity = response.getJSONObject("main")
-                            .getInt("humidity");
+                    weather.setWindDirection(response.getJSONObject("wind")
+                            .getDouble("deg"));
 
-                    int pressure = response.getJSONObject("main")
-                            .getInt("pressure");
+                    weather.setHumidity(response.getJSONObject("main")
+                            .getInt("humidity"));
 
-                    int cloudPercent = response.getJSONObject("clouds")
-                            .getInt("all");
+                    weather.setPressure(response.getJSONObject("main")
+                            .getInt("pressure"));
+
+                    weather.setCloudiness(response.getJSONObject("clouds")
+                            .getInt("all"));
 
                     double currentTemp = response.getJSONObject("main")
                             .getDouble("temp");
 
-                    Date lastUpdated = new Date(response.getLong("dt"));
+                    weather.setLastUpdated(new Date(response.getLong("dt")));
 
                     switch(temperatureUnit){
                         case 'F':
@@ -151,9 +152,11 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
 
-                    weather = new Weather(1, null, description, null, windSpeed,
-                            windDirection, humidity, pressure, cloudPercent,
-                            lastUpdated, currentTemp);
+                    weather.setTemperature((int)currentTemp);
+
+//                    weather = new Weather(1, null, description, null, windSpeed,
+//                            windDirection, humidity, pressure, cloudPercent,
+//                            lastUpdated, currentTemp);
 
                 } catch (Exception e) {
                     updateTextError(e);
