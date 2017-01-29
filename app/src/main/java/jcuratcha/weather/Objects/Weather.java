@@ -77,7 +77,19 @@ public class Weather {
     }
 
     public Weather() {
-        return new Weather(0, null, null, null, 0d, 0d, 0,0,0, null, 0d);
+        id = 0;
+        main = null;
+        description = null;
+        weatherIcon = null;
+
+        windSpeed = 0;
+        windDirection = 0;
+
+        humidity = 0;
+        pressure = 0;
+        cloudiness = 0;
+        lastUpdated = null;
+        temperature = 0;
     }
 
     public Weather(long newId,

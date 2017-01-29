@@ -27,7 +27,7 @@
             android:id="@+id/text_degrees"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.temperature}"/>
+            android:text="@{String.valueOf(weather.temperature)}"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
             android:id="@+id/text_wind_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.windSpeed}"/>
+            android:text="@{String.valueOf(weather.windSpeed)}"/>
 
         <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
@@ -67,7 +67,7 @@
             android:id="@+id/text_humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.humidity}"/>
+            android:text="@{String.valueOf(weather.humidity)}"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
             android:id="@+id/text_atm_pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.pressure}"/>
+            android:text="@{String.valueOf(weather.pressure)}"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
             android:id="@+id/text_cloud_cover"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.cloudiness}"/>
+            android:text="@{String.valueOf(weather.cloudiness)}"/>
 
         <TextView
             android:id="@+id/text_error"
