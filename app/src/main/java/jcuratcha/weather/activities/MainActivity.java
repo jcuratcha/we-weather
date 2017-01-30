@@ -2,6 +2,7 @@ package jcuratcha.weather.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,20 +19,23 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.Locale;
 
 import jcuratcha.weather.R;
+import jcuratcha.weather.databinding.ActivityMainBinding;
 import jcuratcha.weather.network.VolleyRequestQueue;
-import jcuratcha.weather.utils.TemperatureUnit;
+import jcuratcha.weather.objects.Weather;
 import jcuratcha.weather.utils.UnitConverter;
 
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences prefs = null;
 
+    Weather weather;
+
     VolleyRequestQueue requestHelper;
-    TextView mTextDegrees, mTextWeather, mTextError;
-    EditText mCityNameTextInput;
+    TextView mTextError;
 
     private String URL = "api.openweathermap.org";
     private String apiKey = "d3cd60bd315a278f3df5b55318c2ca8d";
@@ -42,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        weather = new Weather();
+        binding.setWeather(weather);
+
         requestHelper = VolleyRequestQueue.getInstance(this);
 
-        mTextDegrees = (TextView) findViewById(R.id.text_degrees);
-        mTextWeather = (TextView) findViewById(R.id.text_current_weather);
         mTextError = (TextView) findViewById(R.id.text_error);
-
-        mCityNameTextInput = (EditText) findViewById(R.id.city_name_edit_text);
 
         PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -90,21 +94,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void GetCurrentWeatherData(View view) {
 
-//        String cityName = mCityNameTextInput.getText().toString().replaceAll("\\s+","");
-//        String cityName = prefs.getString("currentLocation", null).replaceAll("\\s+","");
         String cityName = prefs.getString(getString(R.string.key_city_name), null);
         final char temperatureUnit = prefs.getString(getString(R.string.key_temperature_unit), null).charAt(0);
 
         if (cityName != null)
             cityName.replaceAll("\\s+","");
-
-//        String url = String.format(
-//                Locale.CANADA,
-//                "http://%1$s/data/2.5/weather?id=%2$d&appid=%3$s",
-//                URL,
-//                cityId,
-//                apiKey
-//        );
 
         String url = String.format(
                 Locale.CANADA,
@@ -124,15 +118,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    double currentTemp;
-                    String currentWeatherCondition;
-
-                    currentWeatherCondition = response.getJSONArray("weather")
+                    weather.setDescription(response.getJSONArray("weather")
                             .getJSONObject(0)
-                            .getString("description");
+                            .getString("description"));
 
-                    currentTemp = response.getJSONObject("main")
+
+                    weather.setWindSpeed(response.getJSONObject("wind")
+                            .getDouble("speed"));
+
+                    weather.setWindDirection(response.getJSONObject("wind")
+                            .getDouble("deg"));
+
+                    weather.setHumidity(response.getJSONObject("main")
+                            .getInt("humidity"));
+
+                    weather.setPressure(response.getJSONObject("main")
+                            .getInt("pressure"));
+
+                    weather.setCloudiness(response.getJSONObject("clouds")
+                            .getInt("all"));
+
+                    double currentTemp = response.getJSONObject("main")
                             .getDouble("temp");
+
+                    weather.setLastUpdated(new Date(response.getLong("dt")));
 
                     switch(temperatureUnit){
                         case 'F':
@@ -143,10 +152,11 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
 
-                    long roundedTemp = Math.round(currentTemp);
+                    weather.setTemperature((int)currentTemp);
 
-                    mTextWeather.setText(currentWeatherCondition);
-                    mTextDegrees.setText(String.valueOf(roundedTemp));
+//                    weather = new Weather(1, null, description, null, windSpeed,
+//                            windDirection, humidity, pressure, cloudPercent,
+//                            lastUpdated, currentTemp);
 
                 } catch (Exception e) {
                     updateTextError(e);
@@ -166,9 +176,5 @@ public class MainActivity extends AppCompatActivity {
     private void updateTextError(Exception e) {
         mTextError.setVisibility(View.VISIBLE);
         e.printStackTrace();
-    }
-
-    private double convertKelvinToCelcius(double tempKelvin) {
-        return (tempKelvin - 273.15);
     }
 }

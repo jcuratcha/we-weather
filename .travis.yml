@@ -5,13 +5,14 @@ sudo: false
 android:
   components:
 
-#    - tools # to get the new `repository-11.xml`
-#    - tools # to install Android SDK tools 25.1.x (x = 6 right now)
+# These are needed to get Android 25+ working, in order to
+#update the repository before doing any downloads
+#    - tools
 #    - platform-tools
+#    - tools
+
     - build-tools-22.0.1
     - android-22
-
-    # Images for emulator
     - sys-img-armeabi-v7a-android-22
     - sys-img-armeabi-v7a-android-17
 
@@ -30,6 +31,9 @@ before_script:
 
 before_install:
   - chmod +x gradlew
+
+script:
+  - ./gradlew test --info
 
 notifications:
   email:
